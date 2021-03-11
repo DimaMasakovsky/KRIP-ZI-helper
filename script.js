@@ -25,14 +25,17 @@ function fastExp(base, exponent, modulus) {
   let exponentBinaryString = exponentToBinary(exponent);
   let currentStepNumber = base; 
   let outputString = "";
+  outputString += `${exponentBinaryString}\n`
   
   for (let i = 1; i < exponentBinaryString.length; i++) {
     if (exponentBinaryString[i] == "0") {
       outputString += `${exponentBinaryString[i]}\t${currentStepNumber}^2 mod ${modulus} = ${stepInCaseOfZero(currentStepNumber, modulus)}\n`
+      
       currentStepNumber = stepInCaseOfZero(currentStepNumber, modulus);       
     } else {
       outputString += `${exponentBinaryString[i]}a\t${currentStepNumber}^2 mod ${modulus} = ${stepInCaseOfZero(currentStepNumber, modulus)}\n`;
-      outputString += `${exponentBinaryString[i]}b\t${stepInCaseOfZero(currentStepNumber, modulus)} * ${base} mod ${modulus} = ${currentStepNumber = stepInCaseOfOne(currentStepNumber, base, modulus)}\n`;
+      outputString += `${exponentBinaryString[i]}b\t${stepInCaseOfZero(currentStepNumber, modulus)} * ${base} mod ${modulus} = ${stepInCaseOfOne(currentStepNumber, base, modulus)}\n`;
+      
       currentStepNumber = stepInCaseOfOne(currentStepNumber, base, modulus);
     }
     //console.log(`${exponentBinaryString[i]}\t${currentStepNumber}`);
@@ -40,18 +43,17 @@ function fastExp(base, exponent, modulus) {
   } 
   console.log(`The Answer is ${currentStepNumber}\n`);
   outputString +=`The Answer is ${currentStepNumber}\n`;
-  return outputString; 
 
+  return outputString; 
 
   function exponentToBinary(exponent) {
     return exponent.toString(2).toString();
   } 
-  function stepInCaseOfZero(number){
-    
+  function stepInCaseOfZero(number, modulus){
     return ((number * number) % modulus);
   }
-  function stepInCaseOfOne(number){       
-    return (stepInCaseOfZero(number) * base) % modulus; 
+  function stepInCaseOfOne(number, base, modulus){       
+    return (stepInCaseOfZero(number, modulus) * base) % modulus; 
   }  
 }
 
