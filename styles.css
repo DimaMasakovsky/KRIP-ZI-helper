@@ -97,3 +97,26 @@ h1 {
   justify-content: center;
   align-items: center;
 }
+
+@media (max-width: 400px) {
+  body { 
+    margin: 0rem;
+    height: 100%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-wrapper {
+    width: 90vw;
+  }
+  .input-wrapper {
+
+  
+  }
+}
