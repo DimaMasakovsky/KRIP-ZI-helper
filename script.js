@@ -28,12 +28,15 @@ function fastExp(base, exponent, modulus) {
   
   for (let i = 1; i < exponentBinaryString.length; i++) {
     if (exponentBinaryString[i] == "0") {
-      currentStepNumber = stepInCaseOfZero(currentStepNumber, modulus); 
+      outputString += `${exponentBinaryString[i]}\t${currentStepNumber}^2 mod ${modulus} = ${stepInCaseOfZero(currentStepNumber, modulus)}\n`
+      currentStepNumber = stepInCaseOfZero(currentStepNumber, modulus);       
     } else {
+      outputString += `${exponentBinaryString[i]}a\t${currentStepNumber}^2 mod ${modulus} = ${stepInCaseOfZero(currentStepNumber, modulus)}\n`;
+      outputString += `${exponentBinaryString[i]}b\t${stepInCaseOfZero(currentStepNumber, modulus)} * ${base} mod ${modulus} = ${currentStepNumber = stepInCaseOfOne(currentStepNumber, base, modulus)}\n`;
       currentStepNumber = stepInCaseOfOne(currentStepNumber, base, modulus);
     }
-    console.log(`${exponentBinaryString[i]}\t${currentStepNumber}`);
-    outputString += `${exponentBinaryString[i]}\t${currentStepNumber}\n`;
+    //console.log(`${exponentBinaryString[i]}\t${currentStepNumber}`);
+    //outputString += `${exponentBinaryString[i]}\t${currentStepNumber}\n`;
   } 
   console.log(`The Answer is ${currentStepNumber}\n`);
   outputString +=`The Answer is ${currentStepNumber}\n`;
@@ -44,6 +47,7 @@ function fastExp(base, exponent, modulus) {
     return exponent.toString(2).toString();
   } 
   function stepInCaseOfZero(number){
+    
     return ((number * number) % modulus);
   }
   function stepInCaseOfOne(number){       

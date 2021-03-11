@@ -98,7 +98,7 @@ h1 {
   align-items: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 540px) {
   body { 
     margin: 0rem;
     height: 100%;
@@ -116,7 +116,5 @@ h1 {
     width: 90vw;
   }
   .input-wrapper {
-
-  
   }
 }
